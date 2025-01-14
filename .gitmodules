@@ -1,6 +1,0 @@
-[submodule "third_party/libboxmuller"]
-	path = third_party/libboxmuller
-	url = https://github.com/jspaaks/libboxmuller.git
-[submodule "third_party/libmatrix"]
-	path = third_party/libmatrix
-	url = https://github.com/jspaaks/libmatrix.git

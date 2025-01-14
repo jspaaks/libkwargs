@@ -1,2 +1,0 @@
-true_weights (1x3):
-         0,          1,          2
