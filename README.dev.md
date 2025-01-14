@@ -18,11 +18,8 @@ $ cmake --build .
 # install the project to <repo>/build/cmake/dist
 $ cmake --install .
 
-# run programs to see what they do, e.g.
-$ ./dist/bin/linear-regression-ssr-bgd-artificial
-
 # checkout man pages, e.g.
-$ man -l ./dist/share/man/man1/mkdata.1
+$ man -l ./dist/share/man/man3/kwargs.3
 ```
 
 <!--
@@ -53,25 +50,3 @@ $ clang-format -Werror --dry-run main.c
 # format in place all *.c and *.h files under ./src
 $ clang-format -i `find ./src -type f -name '*.[c|h]'`
 ```
-
-## TODO
-
-1. linear-regression-ssr-bgd-artificial but using sgd
-1. linear-regression-ssr-bgd-artificial but using housing data
-1. add gradient check https://www.youtube.com/watch?v=h7iBpEHGVNc&t=3503s as a unit test
-1. add minibatching https://www.youtube.com/watch?v=h7iBpEHGVNc&t=3776s
-1. add multistart
-1. consider making the test binaries startable from ctest: https://cmake.org/cmake/help/v3.28/command/add_test.html
-1. unstandardize the weights
-1. `libkwargs`
-   - finish man pages
-1. turn runann into readidx, remove its libmatrix dependency
-1. add errplot2, an executable for plotting a 1-d feature array against its true labels and its predictions
-1. add errplot3, an executable for plotting a 2-d feature array against its true labels and its predictions
-1. see if `linear-regression-ssr-bgd*` has been superseded by `train`
-
-## Notes
-
-1. softmax implementations use `log10`, not `ln`, following examples from
-   https://www.youtube.com/watch?v=h7iBpEHGVNc&t=2698s. Not sure it matters
-   since both are monotonic. PyTorch seems to be using `ln` however.
