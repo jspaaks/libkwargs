@@ -1,1 +1,22 @@
-TODO
+.TH kwargs_has_optional 3
+.SH NAME
+kwargs_has_optional \- Assess whether the command line arguments include a given optional argument
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBint kwargs_has_optional (const char * \fIname\fR\fB, const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_has_optional
+assesses whether the command line arguments include the optional argument \fIname\fR, using the
+classification information from \fIkwargs\fR.
+.I name
+can be either the longname or the shortname, see \fBkwargs_create\fR(3). The classification argument
+.I kwargs
+can be constructed using
+\fBkwargs_create\fR.
+.SH RETURN VALUE
+Returns \fBtrue\fR if the optional argument was used, otherwise \fBfalse\fR.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)

@@ -1,1 +1,23 @@
-TODO
+.TH kwargs_get_required_value 3
+.SH NAME
+kwargs_get_required_value \- Get the value associated with a required command line argument
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBconst char * kwargs_get_required_value (const char * \fIname\fR\fB,
+                                        const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_get_required_value
+gets the value associated with a required command line argument \fIname\fR, using the
+classification information from \fIkwargs\fR.
+.I name
+can be either the longname or the shortname, see \fBkwargs_create\fR(3). The classification argument 
+.I kwargs
+can be constructed using
+\fBkwargs_create\fR.
+.SH RETURN VALUE
+A pointer to \fIname\fR's value. Any subsequent parsing is left to the user. 
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)

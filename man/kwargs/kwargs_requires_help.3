@@ -1,1 +1,19 @@
-TODO
+.TH kwargs_requires_help 3
+.SH NAME
+kwargs_requires_help \- Assess whether the special -h / --help flag was used
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBbool kwargs_requires_help (const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_requires_help
+assesses whether the command line arguments include the special -h / --help flag argument, using the
+classification information from \fIkwargs\fR. The classification argument
+.I kwargs
+can be constructed using \fBkwargs_create\fR.
+.SH RETURN VALUE
+Returns \fBtrue\fR if the special -h / --help flag was used, otherwise \fBfalse\fR.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)

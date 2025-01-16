@@ -1,1 +1,22 @@
-TODO
+.TH kwargs_get_positional_value 3
+.SH NAME
+kwargs_get_positional_value \- Get the value associated with a positional command line argument
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBconst char * kwargs_get_positional_value (size_t \fIipos\fR\fB,
+                                          const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_get_positional_value
+gets the value associated with the positional command line argument at index \fIipos\fR, using the
+classification information from \fIkwargs\fR. Indexing is 0-based and starts at the first positional
+argument. The classification argument 
+.I kwargs
+can be constructed using
+\fBkwargs_create\fR.
+.SH RETURN VALUE
+A pointer to the positional argument at index \fIipos\fR. Any subsequent parsing is left to the user.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)

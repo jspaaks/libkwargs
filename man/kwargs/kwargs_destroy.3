@@ -1,1 +1,14 @@
-TODO
+.TH kwargs_destroy 3
+.SH NAME
+kwargs_destroy \- Free the memory associated with a Kwargs object
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBvoid kwargs_destroy (Kwargs ** \fIkwargs\fR\fB);\fR
+.SH DESCRIPTION
+.B kwargs_destroy
+frees the memory associated with a Kwargs object \fIkwargs\fR.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)

@@ -1,1 +1,72 @@
-TODO
+.TH kwargs_create 3
+.SH NAME
+kwargs_create \- Create a Kwargs object in memory
+.SH LIBRARY
+kwargs (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBconst Kwargs * kwargs_create (int \fIargc\fR\fB, const char * \fIargv\fR\fB[],
+                              size_t \fInclasses\fR\fB, const KwargsClass * \fIclasses\fR\fB);
+.SH DESCRIPTION
+.B kwargs_create
+takes a pointer \fIclasses\fR to an array of descriptions of valid command line arguments.
+Each item in the array includes a longname (such as \[dq]--verbose\[dq]), its shortname
+equivalent (such as \[dq]-v\[dq]), and the type of the argument:
+
+.RS
+typedef struct \[lC]
+    char * longname;
+    char * shortname;
+    KwargsType type;
+.br
+\[rC] KwargsClass;
+.RE
+
+where KwargsType is an enumerable,
+
+.RS
+typedef enum \[lC]
+    KWARGS_UNKNOWN = 0,
+    KWARGS_EXE,
+    KWARGS_HELP,
+    KWARGS_FLAG,
+    KWARGS_OPTIONAL,
+    KWARGS_POSITIONAL,
+    KWARGS_REQUIRED,
+    KWARGS_VALUE
+.br
+\[rC] KwargsType;
+.RE
+
+\fIclasses\fR should only include items whose type is one of KWARGS_FLAG, KWARGS_OPTIONAL, or
+KWARGS_REQUIRED, and additionally should not include an item that describes the
+special -h / --help flag, since that is inserted automatically.
+
+.B kwargs_create
+then uses this information to classify each item from
+.I argv
+as one of
+
+.RS
+.TS
+l l.
+KWARGS_EXENAME	the name of the executable
+KWARGS_HELP	the help flag argument
+KWARGS_FLAG	an optional flag argument
+KWARGS_OPTIONAL	an optional argument that takes a value
+KWARGS_POSITIONAL	the value of a positional argument
+KWARGS_REQUIRED	a required argument that takes a value
+KWARGS_VALUE	the value of the preceding argument
+.TE
+.RE
+
+.B kwargs_create
+verifies that all argument names are valid, that each argument that takes a value has in fact
+received one, and that all required arguments are present.
+
+.SH RETURN VALUE
+A pointer to the created Kwargs object. The user is responsible for freeing the
+memory allocated by \fBkwargs_create\fR using \fBkwargs_destroy\fR.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_destroy\fR(3)

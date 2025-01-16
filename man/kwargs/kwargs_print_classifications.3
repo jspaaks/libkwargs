@@ -1,1 +1,21 @@
-TODO
+.TH kwargs_print_classifications 3
+.SH NAME
+kwargs_print_classifications \- Print a table of command line arguments received by the program,
+along with their classification
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBvoid kwargs_print_classifications (FILE * \fIstream\fR\fB,
+                                   const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_print_classifications
+uses
+.I stream
+to print a table of command line arguments received by the program,
+along with an indicator of how
+.B kwargs_create
+classified it.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)
