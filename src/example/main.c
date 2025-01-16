@@ -75,7 +75,8 @@ int main (const int argc, const char * argv[]) {
     const char * input_filename = get_input_filename(kwargs);
     const char * output_filename = get_output_filename(kwargs);
     fprintf(stdout,
-        "Example program that does nothing except demonstrate the use of the libkwargs library.\n"
+        "Example program that does nothing except demonstrate the use of the libkwargs "
+        "library.\n"
         "    nsamples = %zu\n"
         "    basename = \"%s\"\n"
         "    verbose = %s\n"
