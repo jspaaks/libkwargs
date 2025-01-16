@@ -111,25 +111,31 @@ int main (const int argc, const char * argv[]) {
 
 void show_usage (void) {
     fprintf(stdout,
-        "libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS\n"
+        "  Usage:\n"
+        "    libkwargs-example -h\n"
+        "    libkwargs-example --help\n"
+        "    libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS\n"
+        "\n"
+        "  Synopsis\n"
         "    Example program that does nothing except demonstrate the\n"
-        "    use of the libkwargs library.\n"
+        "    use of the libkwargs library by printing the values of\n"
+        "    its command line arguments.\n"
         "\n"
-        "    Requireds\n"
-        "        -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a\n"
-        "                                    positive integer.\n"
+        "  Requireds\n"
+        "    -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a\n"
+        "                                positive integer.\n"
         "\n"
-        "    Optionals\n"
-        "        -b, --basename BASENAME     Value of the basename. Default value of\n"
-        "                                    BASENAME is \"sample.\"\n"
-        "        -h, --help                  Show the help.\n"
-        "        -v, --verbose               Verbose output.\n"
+        "  Optionals\n"
+        "    -b, --basename BASENAME     Value of the basename. Default value of\n"
+        "                                BASENAME is \"sample.\"\n"
+        "    -h, --help                  Show the help.\n"
+        "    -v, --verbose               Verbose output.\n"
         "\n"
-        "    Positionals (by order)\n"
-        "        INPUT_FILENAME              The filepath to the input file.\n"
-        "        OUTPUT_FILENAME             The filepath to the output file. Any\n"
-        "                                    directories must exist before running the\n"
-        "                                    command.\n");
+        "  Positionals (by order)\n"
+        "    INPUT_FILENAME              The filepath to the input file.\n"
+        "    OUTPUT_FILENAME             The filepath to the output file. Any\n"
+        "                                directories must exist before running the\n"
+        "                                command.\n");
 }
 ```
 
@@ -137,25 +143,31 @@ After compiling, show the help with `-h` or `--help` flag:
 
 ```console
 $ ./dist/bin/libkwargs-example --help
-libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS
+  Usage:
+    libkwargs-example -h
+    libkwargs-example --help
+    libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS
+
+  Synopsis
     Example program that does nothing except demonstrate the
-    use of the libkwargs library.
+    use of the libkwargs library by printing the values of
+    its command line arguments.
 
-    Requireds
-        -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a
-                                    positive integer.
+  Requireds
+    -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a
+                                positive integer.
 
-    Optionals
-        -b, --basename BASENAME     Value of the basename. Default value of
-                                    BASENAME is "sample."
-        -h, --help                  Show the help.
-        -v, --verbose               Verbose output.
+  Optionals
+    -b, --basename BASENAME     Value of the basename. Default value of
+                                BASENAME is "sample."
+    -h, --help                  Show the help.
+    -v, --verbose               Verbose output.
 
-    Positionals (by order)
-        INPUT_FILENAME              The filepath to the input file.
-        OUTPUT_FILENAME             The filepath to the output file. Any
-                                    directories must exist before running the
-                                    command.
+  Positionals (by order)
+    INPUT_FILENAME              The filepath to the input file.
+    OUTPUT_FILENAME             The filepath to the output file. Any
+                                directories must exist before running the
+                                command.
 ```
 
 Let's try a with minimal inputs:
