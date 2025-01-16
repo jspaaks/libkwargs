@@ -1,1 +1,22 @@
-TODO
+.TH kwargs_get_optional_value 3
+.SH NAME
+kwargs_get_optional_value \- Get the value associated with an optional parameter
+.SH LIBRARY
+kwargs library (\fIlibkwargs\fR, \fI\-lkwargs\fR)
+.SH SYNOPSIS
+.B #include \[dq]kwargs/kwargs.h\[dq]
+.br
+\fBconst char * kwargs_get_optional_value (const char * \fIname\fR\fB, const Kwargs * \fIkwargs\fR\fB);
+.SH DESCRIPTION
+.B kwargs_get_optional_value
+gets the value associated with an optional command line parameter
+.I name
+using the classification information from
+\fIkwargs\fR,
+and returns it as a pointer to a string value. Subsequent parsing of the string is left to the user. The
+classification argument
+.I kwargs
+can be constructed using
+\fIkwargs_create\fR.
+.SH SEE ALSO
+\fBkwargs\fR(3), \fBkwargs_create\fR(3)
