@@ -4,7 +4,7 @@ For instructions on building, formatting, testing, etc, see [`README.dev.md`](RE
 
 ## Executables
 
-- none
+- `libkwargs-example`: Example program that does nothing except demonstrate the use of the libkwargs library.
 
 ## Libraries
 
@@ -17,12 +17,13 @@ For instructions on building, formatting, testing, etc, see [`README.dev.md`](RE
 ## Example
 
 `libkwargs-example` is an example program for the usage of the library. Its source code is available in
-`src/example` and is reproduced below for convenience:
+`src/example/main.c` and is reproduced below for convenience:
 
 ```c
 #include "kwargs/kwargs.h"
 #include <stdio.h>
 #include <stdlib.h>
+
 
 const char * get_basename (const Kwargs * kwargs);
 const char * get_input_filename (const Kwargs * kwargs);
@@ -30,6 +31,7 @@ size_t get_nsamples (const Kwargs * kwargs);
 const char * get_output_filename (const Kwargs * kwargs);
 bool get_verbose (const Kwargs * kwargs);
 void show_usage (void);
+
 
 const char * get_basename (const Kwargs * kwargs) {
     const char * s = kwargs_get_optional_value("--basename", kwargs);
@@ -39,9 +41,11 @@ const char * get_basename (const Kwargs * kwargs) {
     return s;
 }
 
+
 const char * get_input_filename (const Kwargs * kwargs) {
     return kwargs_get_positional_value(0, kwargs);
 }
+
 
 size_t get_nsamples (const Kwargs * kwargs) {
     const char * s = kwargs_get_required_value("--nsamples", kwargs);
@@ -50,13 +54,16 @@ size_t get_nsamples (const Kwargs * kwargs) {
     return nsamples;
 }
 
+
 const char * get_output_filename (const Kwargs * kwargs) {
     return kwargs_get_positional_value(1, kwargs);
 }
 
+
 bool get_verbose (const Kwargs * kwargs) {
     return kwargs_has_flag("--verbose", kwargs) > 0;
 }
+
 
 int main (const int argc, const char * argv[]) {
     const KwargsClass classes[] = {
@@ -89,32 +96,34 @@ int main (const int argc, const char * argv[]) {
     const bool verbose = get_verbose(kwargs);
     const char * input_filename = get_input_filename(kwargs);
     const char * output_filename = get_output_filename(kwargs);
-    fprintf(stdout, "Demonstration of the libkwargs library\n"
-                    "    nsamples = %zu\n"
-                    "    basename = \"%s\"\n"
-                    "    verbose = %s\n"
-                    "    input_filename = \"%s\"\n"
-                    "    output_filename = \"%s\"\n",
-                    nsamples, basename, verbose ? "true" : "false",
-                    input_filename, output_filename);
+    fprintf(stdout,
+        "Example program that does nothing except demonstrate the use of the libkwargs library.\n"
+        "    nsamples = %zu\n"
+        "    basename = \"%s\"\n"
+        "    verbose = %s\n"
+        "    input_filename = \"%s\"\n"
+        "    output_filename = \"%s\"\n",
+        nsamples, basename, verbose ? "true" : "false", input_filename, output_filename);
     return EXIT_SUCCESS;
 }
 
 
 void show_usage (void) {
-    fprintf(stdout, 
+    fprintf(stdout,
         "libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS\n"
-        "    Example program that does nothing except demonstrate the use of the\n"
-        "    libkwargs library.\n"
+        "    Example program that does nothing except demonstrate the\n"
+        "    use of the libkwargs library.\n"
         "\n"
         "    Requireds\n"
         "        -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a\n"
         "                                    positive integer.\n"
+        "\n"
         "    Optionals\n"
         "        -b, --basename BASENAME     Value of the basename. Default value of\n"
         "                                    BASENAME is \"sample.\"\n"
         "        -h, --help                  Show the help.\n"
         "        -v, --verbose               Verbose output.\n"
+        "\n"
         "    Positionals (by order)\n"
         "        INPUT_FILENAME              The filepath to the input file.\n"
         "        OUTPUT_FILENAME             The filepath to the output file. Any\n"
@@ -128,17 +137,19 @@ After compiling, show the help with `-h` or `--help` flag:
 ```console
 $ ./dist/bin/libkwargs-example --help
 libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS
-    Example program that does nothing except demonstrate the use of the
-    libkwargs library.
+    Example program that does nothing except demonstrate the
+    use of the libkwargs library.
 
     Requireds
         -n, --nsamples SAMPLES      The number of samples. SAMPLES should be a
                                     positive integer.
+
     Optionals
         -b, --basename BASENAME     Value of the basename. Default value of
                                     BASENAME is "sample."
         -h, --help                  Show the help.
         -v, --verbose               Verbose output.
+
     Positionals (by order)
         INPUT_FILENAME              The filepath to the input file.
         OUTPUT_FILENAME             The filepath to the output file. Any
