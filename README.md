@@ -179,7 +179,7 @@ $ ./dist/bin/libkwargs-example --help
                                 command.
 ```
 
-Let's try a with minimal inputs:
+Let's try with minimal inputs:
 
 ```console
 $ ./dist/bin/libkwargs-example -n 3 infile.txt outfile.txt
