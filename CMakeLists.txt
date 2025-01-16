@@ -13,4 +13,5 @@ if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 endif()
 
 add_subdirectory(${PROJECT_ROOT}/man/kwargs)
+add_subdirectory(${PROJECT_ROOT}/src/example)
 add_subdirectory(${PROJECT_ROOT}/src/kwargs)
