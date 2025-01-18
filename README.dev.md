@@ -27,7 +27,7 @@ If this project is the top project, the default is to build the example; convers
 used as a dependency of a different project, the default is to not build the example. Either way,
 building can be controlled by explicitly setting the beforementioned variable, e.g like so:
 
-```
+```console
 cmake -DKWARGS_BUILD_EXAMPLES=ON ..
 ```
 
@@ -43,9 +43,15 @@ $ sudo apt install libcriterion-dev
 Run the tests with
 
 ```console
-$ ./dist/bin/test_boxmuller -j1 --verbose
-$ ./dist/bin/test_matrix -j1 --verbose
+$ ./dist/bin/test_kwargs -j1 --verbose
 ```
+
+Or simply,
+
+```console
+$ ctest
+```
+
 -->
 
 ## `clang-format`
