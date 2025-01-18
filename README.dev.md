@@ -22,6 +22,15 @@ $ cmake --install .
 $ man -l ./dist/share/man/man3/kwargs.3
 ```
 
+The CMake variable `KWARGS_BUILD_EXAMPLES` can be used to control whether the example gets built.
+If this project is the top project, the default is to build the example; conversely, if kwargs is
+used as a dependency of a different project, the default is to not build the example. Either way,
+building can be controlled by explicitly setting the beforementioned variable, e.g like so:
+
+```
+cmake -DKWARGS_BUILD_EXAMPLES=ON ..
+```
+
 <!--
 ## Testing
 

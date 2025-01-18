@@ -90,9 +90,9 @@ int main (const int argc, const char * argv[]) {
 void show_usage (void) {
     fprintf(stdout,
         "  Usage:\n"
-        "    libkwargs-example -h\n"
-        "    libkwargs-example --help\n"
-        "    libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS\n"
+        "    example_kwargs -h\n"
+        "    example_kwargs --help\n"
+        "    example_kwargs [OPTIONALS] REQUIREDS POSITIONALS\n"
         "\n"
         "  Synopsis\n"
         "    Example program that does nothing except demonstrate the\n"
