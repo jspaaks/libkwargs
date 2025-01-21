@@ -17,10 +17,10 @@ add_subdirectory(${PROJECT_ROOT}/src/kwargs)
 
 if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
     # I'm the top-most project
-    option(KWARGS_BUILD_EXAMPLES "Whether to build the libkwargs examples" "ON")
+    option(KWARGS_BUILD_EXAMPLES "Whether to build the libkwargs examples" ON)
 else()
     # I'm not the top-most project, use KWARGS_BUILD_EXAMPLES as-is
-    option(KWARGS_BUILD_EXAMPLES "Whether to build the libkwargs examples" "OFF")
+    option(KWARGS_BUILD_EXAMPLES "Whether to build the libkwargs examples" OFF)
 endif()
 if (KWARGS_BUILD_EXAMPLES)
     add_subdirectory(${PROJECT_ROOT}/src/example)
