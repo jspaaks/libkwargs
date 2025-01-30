@@ -27,8 +27,10 @@ void assert_correct_number_of_positionals (Kwargs * kwargs) {
         fprintf(stderr,
                 "ERROR: Expected %zu positional arguments but found %zu.\n"
                 "Here are some hints to resolve this problem:\n"
-                "  1. Check the spelling of any parameter names\n"
-                "  2. Check whether any parameter names that require a value did in fact get one\n",
+                "  1. Check that each parameter name is valid, and that it has been\n"
+                "     spelled correctly\n"
+                "  2. Check whether any preceding parameter names that require a value\n"
+                "     did in fact get one\n",
                 kwargs->npositionals, actual);
         exit(EXIT_FAILURE);
     }
@@ -263,8 +265,10 @@ int has_type (const char * name, const Kwargs * kwargs, KwargsType type) {
                     KwargsType itype = kwargs->classifieds[iarg];
                     fprintf(stdout, "ERROR: Name \"%s\" seems to have been misclassified as a \"%s\" argument.\n"
                                     "Here are some hints to resolve this problem:\n"
-                                    "  1. Check the spelling of preceding parameter names\n"
-                                    "  2. Check whether preceding parameter names that require a value did in fact get one\n",
+                                    "  1. Check that each preceding parameter name is valid, and that it has been\n"
+                                    "     spelled correctly\n"
+                                    "  2. Check whether any preceding parameter names that require a value\n"
+                                    "     did in fact get one\n",
                                     kwargs->argv[iarg], typenames[itype]);
                     exit(EXIT_FAILURE);
                 }
