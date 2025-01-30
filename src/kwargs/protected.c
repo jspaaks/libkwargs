@@ -25,13 +25,13 @@ void assert_correct_number_of_positionals (Kwargs * kwargs) {
     }
     if (actual != kwargs->npositionals) {
         fprintf(stderr,
-                "ERROR: Expected %zu positional arguments but found %zu.\n"
+                "ERROR: Expected %zu positional argument%s but found %zu.\n"
                 "Here are some hints to resolve this problem:\n"
                 "  1. Check that each parameter name is valid, and that it has been\n"
                 "     spelled correctly\n"
                 "  2. Check whether any preceding parameter names that require a value\n"
                 "     did in fact get one\n",
-                kwargs->npositionals, actual);
+                kwargs->npositionals, kwargs->npositionals == 1 ? "" : "s", actual);
         exit(EXIT_FAILURE);
     }
 }
