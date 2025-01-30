@@ -4,7 +4,7 @@ For instructions on building, formatting, testing, etc, see [`README.dev.md`](RE
 
 ## Executables
 
-- `libkwargs-example`: Example program that does nothing except demonstrate the use of the libkwargs library.
+- `example_kwargs`: Example program that does nothing except demonstrate the use of the libkwargs library.
 
 ## Libraries
 
@@ -25,7 +25,7 @@ For instructions on building, formatting, testing, etc, see [`README.dev.md`](RE
 
 ## Example
 
-`libkwargs-example` is an example program for the usage of the library. Its source code is available in
+`example_kwargs` is an example program for the usage of the library. Its source code is available in
 `src/example/main.c` and is reproduced below for convenience:
 
 ```c
@@ -94,7 +94,8 @@ int main (const int argc, const char * argv[]) {
     };
 
     const size_t nclasses = sizeof(classes) / sizeof(classes[0]);
-    const Kwargs * kwargs = kwargs_create(argc, argv, nclasses, &classes[0]);
+    const size_t npositionals = 2;
+    const Kwargs * kwargs = kwargs_create(argc, argv, nclasses, &classes[0], npositionals);
     if (kwargs_requires_help(kwargs)) {
         show_usage();
         kwargs_destroy((Kwargs **) &kwargs);
@@ -121,9 +122,9 @@ int main (const int argc, const char * argv[]) {
 void show_usage (void) {
     fprintf(stdout,
         "  Usage:\n"
-        "    libkwargs-example -h\n"
-        "    libkwargs-example --help\n"
-        "    libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS\n"
+        "    example_kwargs -h\n"
+        "    example_kwargs --help\n"
+        "    example_kwargs [OPTIONALS] REQUIREDS POSITIONALS\n"
         "\n"
         "  Synopsis\n"
         "    Example program that does nothing except demonstrate the\n"
@@ -151,11 +152,11 @@ void show_usage (void) {
 After compiling, show the help with `-h` or `--help` flag:
 
 ```console
-$ ./dist/bin/libkwargs-example --help
+$ ./dist/bin/example_kwargs --help
   Usage:
-    libkwargs-example -h
-    libkwargs-example --help
-    libkwargs-example [OPTIONALS] REQUIREDS POSITIONALS
+    example_kwargs -h
+    example_kwargs --help
+    example_kwargs [OPTIONALS] REQUIREDS POSITIONALS
 
   Synopsis
     Example program that does nothing except demonstrate the
@@ -182,7 +183,7 @@ $ ./dist/bin/libkwargs-example --help
 Let's try with minimal inputs:
 
 ```console
-$ ./dist/bin/libkwargs-example -n 3 infile.txt outfile.txt
+$ ./dist/bin/example_kwargs -n 3 infile.txt outfile.txt
 Example program that does nothing except demonstrate the use of the libkwargs library.
     nsamples = 3
     basename = "sample."
@@ -194,13 +195,20 @@ Example program that does nothing except demonstrate the use of the libkwargs li
 Let's try with some custom inputs:
 
 ```console
-$ ./dist/bin/libkwargs-example -n 3 -v --basename "myname/" infile.txt outfile.txt
+$ ./dist/bin/example_kwargs -n 3 -v --basename "myname/" infile.txt outfile.txt
 Example program that does nothing except demonstrate the use of the libkwargs library.
     nsamples = 3
     basename = "myname/"
     verbose = true
     input_filename = "infile.txt"
     output_filename = "outfile.txt"
+$ ./dist/bin/example_kwargs -n 3 infile.txt outfile.txt extra.txt
+ERROR: Expected 2 positional arguments but found 3.
+Here are some hints to resolve this problem:
+  1. Check the spelling of any parameter names
+  2. Check whether any parameter names that require a value did in fact get one
+$ ./dist/bin/example_kwargs -v --basename "myname/" infile.txt outfile.txt
+ERROR: Required parameter "--nsamples" seems to be missing, aborting.
 ```
 
 ## Acknowledgements

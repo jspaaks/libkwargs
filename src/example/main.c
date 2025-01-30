@@ -63,7 +63,8 @@ int main (const int argc, const char * argv[]) {
     };
 
     const size_t nclasses = sizeof(classes) / sizeof(classes[0]);
-    const Kwargs * kwargs = kwargs_create(argc, argv, nclasses, &classes[0]);
+    const size_t npositionals = 2;
+    const Kwargs * kwargs = kwargs_create(argc, argv, nclasses, &classes[0], npositionals);
     if (kwargs_requires_help(kwargs)) {
         show_usage();
         kwargs_destroy((Kwargs **) &kwargs);

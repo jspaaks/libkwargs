@@ -7,7 +7,8 @@ kwargs (\fIlibkwargs\fR, \fI\-lkwargs\fR)
 .B #include \[dq]kwargs/kwargs.h\[dq]
 .br
 \fBconst Kwargs * kwargs_create (int \fIargc\fR\fB, const char * \fIargv\fR\fB[],
-                              size_t \fInclasses\fR\fB, const KwargsClass * \fIclasses\fR\fB);
+                              size_t \fInclasses\fR\fB, const KwargsClass * \fIclasses\fR\fB,
+                              size_t \fInpositionals\fR\fB);
 .SH DESCRIPTION
 .B kwargs_create
 takes a pointer \fIclasses\fR to an array of descriptions of valid command line arguments.
@@ -41,7 +42,8 @@ typedef enum \[lC]
 
 \fIclasses\fR should only include items whose type is one of KWARGS_FLAG, KWARGS_OPTIONAL, or
 KWARGS_REQUIRED, and additionally should not include an item that describes the
-special -h / --help flag, since that is inserted automatically.
+special -h / --help flag, since that is inserted automatically. \fInpositionals\fR is the number of
+positional arguments that is expected.
 
 .B kwargs_create
 then uses this information to classify each item from
