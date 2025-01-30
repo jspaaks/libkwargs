@@ -24,7 +24,7 @@ typedef struct {
 
 struct kwargs;  // forward declaration of an abstract data type
 
-const Kwargs * kwargs_create (int argc, const char * argv[], size_t nclasses, const KwargsClass * classes);
+const Kwargs * kwargs_create (int argc, const char * argv[], size_t nclasses, const KwargsClass * classes, size_t npositionals);
 void kwargs_destroy (Kwargs ** kwargs);
 const char * kwargs_get_optional_value (const char * name, const Kwargs * kwargs);
 const char * kwargs_get_positional_value (size_t ipos, const Kwargs * kwargs);

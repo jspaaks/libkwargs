@@ -5,6 +5,7 @@
 #include <stdlib.h>
 
 
+void assert_correct_number_of_positionals (Kwargs * kwargs);
 void assert_longnames_are_compliant (Kwargs * kwargs);
 void assert_no_duplicate_names (Kwargs * kwargs);
 void assert_no_unnameds (Kwargs * kwargs);
@@ -13,6 +14,25 @@ void assert_shortnames_are_compliant (Kwargs * kwargs);
 void assert_types_are_correct_subset (Kwargs * kwargs);
 const KwargsClass * get_class (const char * name, const Kwargs * kwargs);
 char * verify_required_args_are_present (Kwargs * kwargs);
+
+
+void assert_correct_number_of_positionals (Kwargs * kwargs) {
+    size_t actual = 0;
+    for (size_t i = 0; i < kwargs->nclassifieds; i++) {
+        if (kwargs->classifieds[i] == KWARGS_POSITIONAL) {
+            actual++;
+        }
+    }
+    if (actual != kwargs->npositionals) {
+        fprintf(stderr,
+                "ERROR: Expected %zu positional arguments but found %zu.\n"
+                "Here are some hints to resolve this problem:\n"
+                "  1. Check the spelling of any parameter names\n"
+                "  2. Check whether any parameter names that require a value did in fact get one\n",
+                kwargs->npositionals, actual);
+        exit(EXIT_FAILURE);
+    }
+}
 
 
 void assert_longnames_are_compliant (Kwargs * kwargs) {
@@ -182,6 +202,7 @@ void classify (Kwargs * kwargs) {
         }
     }
     char * missing = verify_required_args_are_present(kwargs);
+    assert_correct_number_of_positionals(kwargs);
     if (missing != nullptr) {
         fprintf(stderr, "ERROR: Required parameter \"%s\" seems to be missing, aborting.\n", missing);
         kwargs_destroy(&kwargs);
@@ -243,8 +264,7 @@ int has_type (const char * name, const Kwargs * kwargs, KwargsType type) {
                     fprintf(stdout, "ERROR: Name \"%s\" seems to have been misclassified as a \"%s\" argument.\n"
                                     "Here are some hints to resolve this problem:\n"
                                     "  1. Check the spelling of preceding parameter names\n"
-                                    "  2. Check whether preceding parameter names that require a value did in fact get one\n"
-                                    "  3. Check that preceding parameter names are valid shortnames or longnames.\n",
+                                    "  2. Check whether preceding parameter names that require a value did in fact get one\n",
                                     kwargs->argv[iarg], typenames[itype]);
                     exit(EXIT_FAILURE);
                 }

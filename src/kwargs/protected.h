@@ -10,6 +10,7 @@ struct kwargs {
     const KwargsClass * classes;
     size_t nclassifieds;
     KwargsType * classifieds;
+    size_t npositionals;
 };
 
 void classify (Kwargs * kwargs);

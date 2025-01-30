@@ -7,7 +7,7 @@
 #include <string.h>
 
 
-const Kwargs * kwargs_create (const int argc, const char * argv[], const size_t nclasses, const KwargsClass * classes) {
+const Kwargs * kwargs_create (const int argc, const char * argv[], const size_t nclasses, const KwargsClass * classes, size_t npositionals) {
     errno = 0;
     Kwargs * kwargs = calloc(1, sizeof(Kwargs));
     if (kwargs == nullptr) {
@@ -30,6 +30,7 @@ const Kwargs * kwargs_create (const int argc, const char * argv[], const size_t 
     kwargs->classes = classes;
     kwargs->nclassifieds = (size_t) argc;
     kwargs->classifieds = classifieds;
+    kwargs->npositionals = npositionals;
     classify(kwargs);
     return (const Kwargs *) kwargs;
 }
